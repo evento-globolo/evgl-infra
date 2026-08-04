@@ -1,0 +1,14 @@
+[
+  "aggregation",
+  "argocd",
+  "discovery",
+  "events",
+  "evgl",
+  "geospatial",
+  "infrastructure",
+  "kubernetes",
+  "kustomize",
+  "observability",
+  "rust",
+  "terraform"
+]

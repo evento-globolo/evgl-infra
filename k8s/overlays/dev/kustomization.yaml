@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: evgl-dev
+resources:
+  - ../../base
+nameSuffix: -dev
+replicas:
+  - name: evgl-api
+    count: 1

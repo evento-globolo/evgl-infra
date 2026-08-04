@@ -1,0 +1,87 @@
+name: evgl
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: evgl
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: local-only-change-me
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U postgres -d evgl]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  evgl-api:
+    image: ghcr.io/evento-globolo/evgl-api:0.1.0
+    environment:
+      BIND_ADDR: 0.0.0.0:8080
+      RUST_LOG: info,tower_http=info
+    ports:
+      - "8080:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    depends_on:
+      postgres:
+        condition: service_healthy
+  evgl-mash-web:
+    image: ghcr.io/evento-globolo/evgl-mash-web:0.1.0
+    environment:
+      BIND_ADDR: 0.0.0.0:8080
+      RUST_LOG: info,tower_http=info
+    ports:
+      - "8081:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    depends_on:
+      postgres:
+        condition: service_healthy
+  evgl-leptos-web:
+    image: ghcr.io/evento-globolo/evgl-leptos-web:0.1.0
+    environment:
+      BIND_ADDR: 0.0.0.0:8080
+      RUST_LOG: info,tower_http=info
+    ports:
+      - "8082:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    depends_on:
+      postgres:
+        condition: service_healthy
+  evgl-dioxus-web:
+    image: ghcr.io/evento-globolo/evgl-dioxus-web:0.1.0
+    environment:
+      BIND_ADDR: 0.0.0.0:8080
+      RUST_LOG: info,tower_http=info
+    ports:
+      - "8083:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    depends_on:
+      postgres:
+        condition: service_healthy
+  evgl-sync:
+    image: ghcr.io/evento-globolo/evgl-sync:0.1.0
+    environment:
+      BIND_ADDR: 0.0.0.0:8080
+      RUST_LOG: info,tower_http=info
+    ports:
+      - "8084:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    depends_on:
+      postgres:
+        condition: service_healthy
+volumes:
+  postgres-data: {}

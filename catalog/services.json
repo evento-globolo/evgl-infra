@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "organization": "evento-globolo",
+  "services": [
+    "evgl-api",
+    "evgl-mash-web",
+    "evgl-leptos-web",
+    "evgl-dioxus-web",
+    "evgl-sync"
+  ]
+}
