@@ -1,0 +1,20 @@
+{
+  "name": "@evento-globolo/evgl-edge-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Edge webhook verification, provider callbacks, event ingestion, and cross-post dispatch.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "lint": "node --check src/index.mjs && node --check src/security.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

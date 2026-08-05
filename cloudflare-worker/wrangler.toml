@@ -1,0 +1,22 @@
+name = "evgl-edge"
+main = "src/index.mjs"
+compatibility_date = "2026-08-04"
+workers_dev = true
+
+[vars]
+PRODUCT_ORG = "evento-globolo"
+PRODUCT_NAME = "Evento Globolo"
+CORS_ORIGIN = "*"
+
+# Production bindings are intentionally placeholders. Create resources and replace IDs/names before deploy.
+# [[kv_namespaces]]
+# binding = "STATE_KV"
+# id = "replace-me"
+#
+# [[queues.producers]]
+# binding = "EVENT_QUEUE"
+# queue = "evgl-events"
+#
+# [[queues.producers]]
+# binding = "ALERT_QUEUE"
+# queue = "evgl-alerts"
