@@ -1,0 +1,15 @@
+name = "evgl-edge"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+workers_dev = true
+
+[vars]
+SERVICE_NAME = "evgl-edge"
+RELEASE = "dev"
+ALLOWED_ORIGINS = "http://localhost:4321,http://localhost:3000"
+ALLOWED_UPSTREAM_HOSTS = "api.evento-globolo.example"
+UPSTREAM_BASE_URL = "https://api.evento-globolo.example"
+
+# [[queues.producers]]
+# binding = "PROVIDER_WEBHOOKS"
+# queue = "evgl-provider-webhooks"
